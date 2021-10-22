@@ -1,7 +1,13 @@
 package com.kbe.LC2.model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.tomcat.util.json.JSONParser;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.File;
+import java.io.IOException;
+
 
 @Entity
 public class Song {
@@ -53,5 +59,17 @@ public class Song {
                 ", label='" + label + '\'' +
                 ", released=" + released +
                 '}';
+    }
+
+    // fileLocation = "../../resources/songs.json"
+    public Song[] loadJSONSongs(String fileLocation){
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            Song[] loadedJSONSongs = objectMapper.readValue(new File(fileLocation), Song[].class);
+            return loadedJSONSongs;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
