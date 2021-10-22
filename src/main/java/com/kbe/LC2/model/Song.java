@@ -1,11 +1,16 @@
 package com.kbe.LC2.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Song {
-    private final long id;
-    private final String title;
-    private final String artist;
-    private final String label;
-    private final int released;
+    private @Id
+    long id;
+    private String title;
+    private String artist;
+    private String label;
+    private int released;
 
     public Song(long id, String title, String artist, String label, int released) {
         this.id = id;
@@ -13,6 +18,10 @@ public class Song {
         this.artist = artist;
         this.label = label;
         this.released = released;
+    }
+
+    public Song() {
+
     }
 
     public long getId() {
@@ -33,5 +42,16 @@ public class Song {
 
     public int getReleased() {
         return released;
+    }
+
+    @Override
+    public String toString() {
+        return "Song{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", artist='" + artist + '\'' +
+                ", label='" + label + '\'' +
+                ", released=" + released +
+                '}';
     }
 }
