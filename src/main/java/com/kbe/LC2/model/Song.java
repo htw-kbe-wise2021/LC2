@@ -1,13 +1,13 @@
 package com.kbe.LC2.model;
 
 public class Song {
-    private final int id;
+    private final long id;
     private final String title;
     private final String artist;
     private final String label;
     private final int released;
 
-    public Song(int id, String title, String artist, String label, int released) {
+    public Song(long id, String title, String artist, String label, int released) {
         this.id = id;
         this.title = title;
         this.artist = artist;
@@ -15,7 +15,7 @@ public class Song {
         this.released = released;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
