@@ -1,5 +1,6 @@
 package com.kbe.LC2.database;
 
+/*
 import com.kbe.LC2.model.Song;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -18,3 +19,4 @@ class LoadDatabase {
         }
     }
 }
+*/

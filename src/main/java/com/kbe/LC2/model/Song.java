@@ -3,15 +3,15 @@ package com.kbe.LC2.model;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.tomcat.util.json.JSONParser;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+//import javax.persistence.Entity;
+//import javax.persistence.Id;
 import java.io.File;
 import java.io.IOException;
 
 
-@Entity
+//@Entity
 public class Song {
-    private @Id
+    //private @Id
     long id;
     private String title;
     private String artist;
