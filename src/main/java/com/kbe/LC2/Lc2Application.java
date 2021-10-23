@@ -1,6 +1,5 @@
 package com.kbe.LC2;
 
-import com.kbe.LC2.model.Song;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,6 +9,7 @@ public class Lc2Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Lc2Application.class, args);
 
+		/*
 		String songFile = "src/main/resources/songs.json";
 		Song[] JSONSongs = Song.loadJSONSongs(songFile);
 
@@ -17,6 +17,7 @@ public class Lc2Application {
 			 ) {
 			System.out.println(s);
 		}
+		 */
 	}
 
 }

@@ -60,16 +60,4 @@ public class Song {
                 ", released=" + released +
                 '}';
     }
-
-    // fileLocation = "../../resources/songs.json"
-    public static Song[] loadJSONSongs(String fileLocation){
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            Song[] loadedJSONSongs = objectMapper.readValue(new File(fileLocation), Song[].class);
-            return loadedJSONSongs;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 }
