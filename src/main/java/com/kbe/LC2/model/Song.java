@@ -62,7 +62,7 @@ public class Song {
     }
 
     // fileLocation = "../../resources/songs.json"
-    public Song[] loadJSONSongs(String fileLocation){
+    public static Song[] loadJSONSongs(String fileLocation){
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             Song[] loadedJSONSongs = objectMapper.readValue(new File(fileLocation), Song[].class);
