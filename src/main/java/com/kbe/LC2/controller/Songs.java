@@ -3,6 +3,7 @@ package com.kbe.LC2.controller;
 //import com.kbe.LC2.database.SongsRepository;
 import com.kbe.LC2.model.Song;
 import com.kbe.LC2.model.SongLoader;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,10 +33,11 @@ public class Songs {
     }
 
     @PostMapping(value="/LC2/songs", consumes = "application/json", produces = "application/json")
-    public String addNewSong(@RequestBody Song newSong){
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public void addNewSong(@RequestBody Song newSong){
         Song addedSong = songLoader.addSong(newSong);
-        String postResponse = "ADDED: " + addedSong.toString() + "\n TO BACKEND";
-
-        return  postResponse;
+        ///////
+        //TODO ADD LOCATION TO HEADER IN RESPONSE
+        /////
     }
 }
