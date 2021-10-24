@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class SongLoader {
@@ -15,13 +16,15 @@ public class SongLoader {
 
     public SongLoader(){
         String songFile = "src/main/resources/songs.json";
-        this.loadedJSONSongs = this.loadJSONSongs(songFile);
+        this.loadedJSONSongs = new LinkedList<>();
+        this.loadedJSONSongs.addAll(this.loadJSONSongs(songFile));
 
         initializeNextSongID();
     }
 
     public SongLoader(String songFile){
-        this.loadedJSONSongs = this.loadJSONSongs(songFile);
+        this.loadedJSONSongs = new LinkedList<>();
+        this.loadedJSONSongs.addAll(this.loadJSONSongs(songFile));
 
         initializeNextSongID();
     }
@@ -30,17 +33,20 @@ public class SongLoader {
         return loadedJSONSongs;
     }
 
-    public void addSong(Song newSong){
-        newSong.setId(this.nextSongID);
+    public Song addSong(Song newSong){
+        long newSongID = this.nextSongID;
+        newSong.setId(newSongID);
         this.loadedJSONSongs.add(newSong);
 
         updateNextSongID();
+
+        return this.getSong(newSongID);
     }
 
     public Song getSong(long songID){
-        for (Song loadedSong: loadedJSONSongs
+        for (Song loadedSong: this.loadedJSONSongs
              ) {
-            if(loadedSong.id == songID){
+            if(loadedSong.getId() == songID){
                 return loadedSong;
             }
         }
@@ -62,7 +68,7 @@ public class SongLoader {
         long newID = 0;
         for (Song s: this.loadedJSONSongs
         ) {
-            if(s.getId() > newID) newID++;
+            if(s.getId() > newID) newID = s.getId() + 1;
         }
         this.nextSongID = newID;
     }

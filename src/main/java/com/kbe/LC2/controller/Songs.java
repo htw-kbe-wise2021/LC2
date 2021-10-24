@@ -31,8 +31,11 @@ public class Songs {
         return songLoader.getSong(id);
     }
 
-    @PostMapping
-    public void addNewSong(@RequestBody Song newSong){
-        songLoader.addSong(newSong);
+    @PostMapping(value="/LC2/songs", consumes = "application/json", produces = "application/json")
+    public String addNewSong(@RequestBody Song newSong){
+        Song addedSong = songLoader.addSong(newSong);
+        String postResponse = "ADDED: " + addedSong.toString() + "\n TO BACKEND";
+
+        return  postResponse;
     }
 }
