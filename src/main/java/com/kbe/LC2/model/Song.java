@@ -34,6 +34,10 @@ public class Song {
         return id;
     }
 
+    protected void setId(long newId){
+        this.id = newId;
+    }
+
     public String getTitle() {
         return title;
     }

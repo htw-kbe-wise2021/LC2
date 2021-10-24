@@ -21,13 +21,18 @@ public class Songs {
     private SongLoader songLoader = new SongLoader(songFile);
 
     @GetMapping("LC2/songs")
-    public List<Song> all(){
-        return List.of(songLoader.getLoadedJSONSongs());
+    public List<Song> allSongs(){
+        return songLoader.getLoadedJSONSongs();
     }
 
     @GetMapping(value="/LC2/songs/{id}")
     @ResponseBody
     public Song getSongByID(@PathVariable("id") long id) {
         return songLoader.getSong(id);
+    }
+
+    @PostMapping
+    public void addNewSong(@RequestBody Song newSong){
+        songLoader.addSong(newSong);
     }
 }
