@@ -3,15 +3,16 @@ package com.kbe.LC2.model;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.tomcat.util.json.JSONParser;
 
-//import javax.persistence.Entity;
-//import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.File;
 import java.io.IOException;
 
 
-//@Entity
+@Entity
+@Table(name = "Song")
 public class Song {
-    //private @Id
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
     private String artist;
