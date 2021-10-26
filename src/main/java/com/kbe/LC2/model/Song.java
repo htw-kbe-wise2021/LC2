@@ -12,7 +12,7 @@ import java.io.IOException;
 //@Entity
 public class Song {
     //private @Id
-    long id;
+    private long id;
     private String title;
     private String artist;
     private String label;
