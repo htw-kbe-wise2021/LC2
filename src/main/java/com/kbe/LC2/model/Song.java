@@ -12,7 +12,6 @@ import java.io.IOException;
 @Table(name = "Song")
 public class Song {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
     private String artist;
