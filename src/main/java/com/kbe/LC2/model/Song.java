@@ -1,17 +1,30 @@
 package com.kbe.LC2.model;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.tomcat.util.json.JSONParser;
-
 import javax.persistence.*;
-import java.io.File;
-import java.io.IOException;
-
 
 @Entity
 @Table(name = "Song")
 public class Song {
+
+    /////
+    //PROBLEM: initialValue has to be known before runtime
+    //this is ok if the database is always wiped after run or if the
+    //server nerver goes down otherwise, this requieres a different solution
+
+    //NVM this doesnt respect the given ids
+    //I will solve keeping the given ids later
+    //for now there will be new ids for the songs from the json
+    ////
     @Id
+    @SequenceGenerator(
+            name="songSequence",
+            initialValue = 10,
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "songSequence"
+    )
     private long id;
     private String title;
     private String artist;
