@@ -4,9 +4,13 @@ package com.kbe.LC2.controller;
 import com.kbe.LC2.model.Song;
 import com.kbe.LC2.model.SongLoader;
 import com.kbe.LC2.model.SongRepository;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,12 +39,15 @@ public class SongController {
     }
 
     @PostMapping(value="/LC2/songs", consumes = "application/json", produces = "application/json")
-    @ResponseStatus(code = HttpStatus.CREATED)
-    public void addNewSong(@RequestBody Song newSong){
-        songRepository.save(newSong);
-        //Song addedSong = songLoader.addSong(newSong);
-        ///////
-        //TODO ADD LOCATION TO HEADER IN RESPONSE
-        /////
+    public ResponseEntity<Void> addNewSong(@RequestBody Song newSong){
+        Song savedSong = songRepository.save(newSong);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedSong.getId())
+                .toUri();
+
+        return ResponseEntity.created(location).build();
     }
 }
