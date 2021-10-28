@@ -1,6 +1,7 @@
 package com.kbe.LC2.database;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kbe.LC2.model.IdGenerator;
 import com.kbe.LC2.model.Song;
 import com.kbe.LC2.model.SongRepository;
 import org.slf4j.Logger;
@@ -23,6 +24,8 @@ class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(SongRepository repository) {
 
+        IdGenerator.initFreeSongID(1);
+
         String songFile = "src/main/resources/songs.json";
         List<Song> songsFromJSONFile = new LinkedList<>();
         songsFromJSONFile.addAll(this.loadJSONSongs(songFile));
@@ -33,6 +36,7 @@ class LoadDatabase {
             for (Song song: songsFromJSONFile
                  ) {
                 log.info("Preloading " + repository.save(song));
+                IdGenerator.updateFreeSongID(song.getId());
             }
         };
 

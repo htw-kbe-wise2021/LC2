@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SongLoader {
-
+/*
     private List<Song> loadedJSONSongs;
 
     private long nextSongID;
@@ -76,4 +76,6 @@ public class SongLoader {
     private void updateNextSongID(){
         this.nextSongID++;
     }
+    
+ */
 }

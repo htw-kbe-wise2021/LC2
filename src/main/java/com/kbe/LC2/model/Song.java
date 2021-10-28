@@ -16,23 +16,22 @@ public class Song {
     //for now there will be new ids for the songs from the json
     ////
     @Id
-    @SequenceGenerator(
-            name="songSequence",
-            initialValue = 10,
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "songSequence"
-    )
     private long id;
     private String title;
     private String artist;
     private String label;
     private int released;
 
+    //used for db initialization
     public Song(long id, String title, String artist, String label, int released) {
         this.id = id;
+        this.title = title;
+        this.artist = artist;
+        this.label = label;
+        this.released = released;
+    }
+
+    public Song(String title, String artist, String label, int released) {
         this.title = title;
         this.artist = artist;
         this.label = label;
@@ -47,7 +46,7 @@ public class Song {
         return id;
     }
 
-    protected void setId(long newId){
+    public void setId(long newId){
         this.id = newId;
     }
 
@@ -65,6 +64,22 @@ public class Song {
 
     public int getReleased() {
         return released;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public void setReleased(int released) {
+        this.released = released;
     }
 
     @Override

@@ -1,10 +1,9 @@
 package com.kbe.LC2.controller;
 
 //import com.kbe.LC2.database.SongsRepository;
+import com.kbe.LC2.model.IdGenerator;
 import com.kbe.LC2.model.Song;
-import com.kbe.LC2.model.SongLoader;
 import com.kbe.LC2.model.SongRepository;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +22,6 @@ public class SongController {
         this.songRepository = songRepository;
     }
 
-    private String songFile = "src/main/resources/songs.json";
-    private SongLoader songLoader = new SongLoader(songFile);
-
     @GetMapping("LC2/songs")
     public List<Song> allSongs(){
         return songRepository.findAll();
@@ -40,7 +36,9 @@ public class SongController {
 
     @PostMapping(value="/LC2/songs", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Void> addNewSong(@RequestBody Song newSong){
+        newSong.setId(IdGenerator.getFreeSongId());
         Song savedSong = songRepository.save(newSong);
+        IdGenerator.updateFreeSongID(savedSong.getId());
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
