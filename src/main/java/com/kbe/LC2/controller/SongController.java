@@ -50,4 +50,10 @@ public class SongController {
 
         return ResponseEntity.created(location).build();
     }
+
+    @DeleteMapping(value="/LC2/songs/{id}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void deleteSong(@PathVariable("id") long id){
+        songRepository.deleteById(id);
+    }
 }
