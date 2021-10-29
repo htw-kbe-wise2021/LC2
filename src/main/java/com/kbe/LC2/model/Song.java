@@ -1,6 +1,7 @@
 package com.kbe.LC2.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "Song")
@@ -17,9 +18,18 @@ public class Song {
     ////
     @Id
     private long id;
+    @NotBlank(message = "title may not be blank")
+    @Size(min=1,max=200,message = "title must be between 1 and 200 characters long")
     private String title;
+    @NotBlank(message = "artist may not be blank")
+    @Size(min=1,max=200,message = "artist must be between 1 and 200 characters long")
     private String artist;
+    @NotBlank(message = "label may not be blank")
+    @Size(min=1,max=200,message = "label must be between 1 and 200 characters long")
     private String label;
+    @NotNull(message= "released may not be null")
+    @Min(value=1000, message = "released must be greater than 999")
+    @Max(value=2021,message="released must be smaller than 2022 or")
     private int released;
 
     //used for db initialization

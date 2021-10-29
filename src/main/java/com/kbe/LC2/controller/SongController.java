@@ -23,12 +23,13 @@ public class SongController {
     }
 
     @GetMapping("LC2/songs")
+    @ResponseBody
     public List<Song> allSongs(){
         return songRepository.findAll();
     }
 
     @GetMapping(value="/LC2/songs/{id}")
-    @ResponseBody
+    @ResponseBody //legt rückgabewert als json in die HTTP response auf diese GET Anfrage
     public Optional<Song> getSongByID(@PathVariable("id") long id) {
         return songRepository.findById(id);
         //return songLoader.getSong(id);
