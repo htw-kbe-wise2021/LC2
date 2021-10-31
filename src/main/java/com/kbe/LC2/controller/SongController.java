@@ -6,6 +6,7 @@ import com.kbe.LC2.model.Song;
 import com.kbe.LC2.model.SongRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -36,7 +37,7 @@ public class SongController {
     }
 
     @PostMapping(value="/LC2/songs", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Void> addNewSong(@RequestBody Song newSong){
+    public ResponseEntity<Void> addNewSong(@Validated @RequestBody Song newSong){
         newSong.setId(IdGenerator.getFreeSongId());
         Song savedSong = songRepository.save(newSong);
         IdGenerator.updateFreeSongID(savedSong.getId());
